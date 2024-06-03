@@ -26,29 +26,36 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white10,
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        title: Text("Crypto Tracker"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: const Text("Crypto Tracker"),
+        centerTitle: true,
       ),
-      body: Container(
-        margin: EdgeInsets.only(top: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
+      body: SingleChildScrollView(
+        child: Container(
+          color: Theme.of(context).colorScheme.surface,
+          //margin: const EdgeInsets.only(top: 10),
+          child: const Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CoinWidget(),
-                CoinWidget(),
-                CoinWidget()
+                Column(
+                  children: [
+                    CoinWidget(),
+                    CoinWidget(),
+                    CoinWidget()
+                  ],
+                ),
+                Column(
+                  children: [
+                    CoinWidget(),
+                    CoinWidget(),
+                    CoinWidget()
+                  ],
+                )
               ],
             ),
-            Column(
-              children: [
-                CoinWidget(),
-                CoinWidget(),
-                CoinWidget()
-              ],
-            )
-          ],
+          ),
         ),
       ),
     );

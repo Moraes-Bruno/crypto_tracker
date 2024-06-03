@@ -16,7 +16,7 @@ class _CoinWidgetState extends State<CoinWidget> {
       height: 180,
       decoration: ShapeDecoration(
           shape: Border.all(color: Colors.black), color: Colors.grey),
-      child: Column(
+      child: const Column(
         children: [
           Text(
             "BTC/BRL",
