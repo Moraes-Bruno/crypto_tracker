@@ -1,7 +1,10 @@
+import 'package:crypto_tracker/models/preco.dart';
 import 'package:flutter/material.dart';
 
 class DolarWidget extends StatefulWidget {
-  const DolarWidget({super.key});
+  DolarWidget({required this.preco, super.key});
+
+  Preco preco;
 
   @override
   State<DolarWidget> createState() => _DolarWidgetState();
@@ -28,13 +31,13 @@ class _DolarWidgetState extends State<DolarWidget> {
                 width: 10,
               ),
               Text(
-                "USD/BRL",
+                "${widget.preco.deMoeda.name}/${widget.preco.paraMoeda.name}",
                 style: TextStyle(fontSize: 30),
               ),
             ],
           ),
           Text(
-            "9,99",
+            widget.preco.valor.toStringAsPrecision(3).replaceAll(".", ","),
             style: TextStyle(fontSize: 50),
           ),
         ],

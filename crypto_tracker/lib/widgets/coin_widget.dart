@@ -1,7 +1,11 @@
+import 'package:crypto_tracker/models/coin_enum.dart';
+import 'package:crypto_tracker/models/preco.dart';
 import 'package:flutter/material.dart';
 
 class CoinWidget extends StatefulWidget {
-  const CoinWidget({super.key});
+  CoinWidget({required this.preco, super.key});
+
+  Preco preco;
 
   @override
   State<CoinWidget> createState() => _CoinWidgetState();
@@ -24,16 +28,18 @@ class _CoinWidgetState extends State<CoinWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  image: AssetImage("/images/bitcoin.png"),
+                  image: AssetImage(widget.preco.deMoeda == CoinEnum.BTC
+                      ? "/images/bitcoin.png"
+                      : "/images/ethereum.png"),
                 ),
                 Text(
-                  "BTC/BRL",
+                  "${widget.preco.deMoeda.name}/${widget.preco.paraMoeda.name}",
                   style: TextStyle(fontSize: 30),
                 ),
               ],
             ),
             Text(
-              "999.999,99",
+              widget.preco.valor.toStringAsFixed(2).replaceAll(".", ","),
               style: TextStyle(fontSize: 30),
             ),
           ],
