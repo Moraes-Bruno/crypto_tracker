@@ -13,20 +13,31 @@ class _CoinWidgetState extends State<CoinWidget> {
     return Container(
       margin: const EdgeInsets.all(5),
       width: 180,
-      height: 180,
+      height: 115,
       decoration: ShapeDecoration(
           shape: Border.all(color: Colors.black), color: Colors.grey),
-      child: const Column(
-        children: [
-          Text(
-            "BTC/BRL",
-            style: TextStyle(fontSize: 30),
-          ),
-          Text(
-            "999.999,99",
-            style: TextStyle(fontSize: 30),
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, 8, 0, 10),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: AssetImage("/images/bitcoin.png"),
+                ),
+                Text(
+                  "BTC/BRL",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ],
+            ),
+            Text(
+              "999.999,99",
+              style: TextStyle(fontSize: 30),
+            ),
+          ],
+        ),
       ),
     );
   }

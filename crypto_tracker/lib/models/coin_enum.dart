@@ -1,6 +1,1 @@
-enum CoinEnum {
-  BRL,
-  USD,
-  BTC,
-  ETH
-}
+enum CoinEnum { BRL, USD, BTC, ETH }
