@@ -1,6 +1,7 @@
 import 'package:crypto_tracker/models/preco.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DolarWidget extends StatefulWidget {
   DolarWidget({required this.preco, super.key});
 
@@ -24,21 +25,21 @@ class _DolarWidgetState extends State<DolarWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(
+              const Image(
                 image: AssetImage("/images/eua.png"),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Text(
                 "${widget.preco.deMoeda.name}/${widget.preco.paraMoeda.name}",
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
             ],
           ),
           Text(
             widget.preco.valor.toStringAsPrecision(3).replaceAll(".", ","),
-            style: TextStyle(fontSize: 50),
+            style: const TextStyle(fontSize: 50),
           ),
         ],
       ),
