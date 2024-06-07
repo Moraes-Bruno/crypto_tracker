@@ -1,7 +1,9 @@
+import 'package:crypto_tracker/cubit/crypto_cubit.dart';
 import 'package:crypto_tracker/models/coin_enum.dart';
 import 'package:crypto_tracker/models/preco.dart';
 import 'package:crypto_tracker/repositories/repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/coin_widget.dart';
 import '../widgets/dolar_widget.dart';
@@ -16,6 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool consultou = false;
+
   @override
   void initState() {
     super.initState();
@@ -24,66 +28,58 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (!consultou) {
+      context.read<CryptoCubit>().fetchData();
+      consultou = true;
+    }
+
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Text("Crypto Tracker"),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          //color: Theme.of(context).colorScheme.surface,
-          //margin: const EdgeInsets.only(top: 10),
-          child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Column(children: [
-                DolarWidget(
-                  preco: Preco(
-                      deMoeda: CoinEnum.USD,
-                      paraMoeda: CoinEnum.BRL,
-                      valor: 5.289526631721579),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          title: const Text("Crypto Tracker"),
+          centerTitle: true,
+        ),
+        body: BlocBuilder<CryptoCubit, List<Preco>>(
+            builder: (context, listPreco) {
+          return SingleChildScrollView(
+            child: Container(
+              //color: Theme.of(context).colorScheme.surface,
+              //margin: const EdgeInsets.only(top: 10),
+              child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Column(children: [
+                    DolarWidget(
+                      preco: listPreco[0],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CoinWidget(
-                          preco: Preco(
-                              deMoeda: CoinEnum.BTC,
-                              paraMoeda: CoinEnum.BRL,
-                              valor: 9999999.92),
+                        Column(
+                          children: [
+                            CoinWidget(
+                              preco: listPreco[1],
+                            ),
+                            CoinWidget(
+                              preco: listPreco[2],
+                            )
+                          ],
                         ),
-                        CoinWidget(
-                          preco: Preco(
-                              deMoeda: CoinEnum.ETH,
-                              paraMoeda: CoinEnum.BRL,
-                              valor: 9.9),
+                        Column(
+                          children: [
+                            CoinWidget(
+                              preco: listPreco[3],
+                            ),
+                            CoinWidget(
+                              preco: listPreco[4],
+                            )
+                          ],
                         )
                       ],
                     ),
-                    Column(
-                      children: [
-                        CoinWidget(
-                          preco: Preco(
-                              deMoeda: CoinEnum.BTC,
-                              paraMoeda: CoinEnum.USD,
-                              valor: 9.9),
-                        ),
-                        CoinWidget(
-                          preco: Preco(
-                              deMoeda: CoinEnum.ETH,
-                              paraMoeda: CoinEnum.USD,
-                              valor: 9.9),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ])),
-        ),
-      ),
-    );
+                  ])),
+            ),
+          );
+        }));
   }
 }
