@@ -26,7 +26,7 @@ class _DolarWidgetState extends State<DolarWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Image(
-                image: AssetImage("/images/eua.png"),
+                image: AssetImage("assets/images/eua.png"),
               ),
               const SizedBox(
                 width: 10,

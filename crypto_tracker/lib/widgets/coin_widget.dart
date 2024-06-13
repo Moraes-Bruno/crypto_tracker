@@ -30,8 +30,8 @@ class _CoinWidgetState extends State<CoinWidget> {
               children: [
                 Image(
                   image: AssetImage(widget.preco.deMoeda == CoinEnum.BTC
-                      ? "/images/bitcoin.png"
-                      : "/images/ethereum.png"),
+                      ? "assets/images/bitcoin.png"
+                      : "assets/images/ethereum.png"),
                 ),
                 Text(
                   "${widget.preco.deMoeda.name}/${widget.preco.paraMoeda.name}",

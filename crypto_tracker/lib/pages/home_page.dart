@@ -2,6 +2,7 @@ import 'package:crypto_tracker/cubit/crypto_cubit.dart';
 import 'package:crypto_tracker/models/preco.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:async';
 
 import '../widgets/coin_widget.dart';
 import '../widgets/dolar_widget.dart';
@@ -15,12 +16,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool consultou = false;
+  Timer? timer;
 
   @override
   void initState() {
     super.initState();
+    fetchDataAndUpdate();
     //Repository.getExchange(CoinEnum.USD, CoinEnum.BRL);
+    timer = Timer.periodic(const Duration(seconds: 30), (Timer t) {
+      fetchDataAndUpdate();
+    });
   }
+
+    @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+ void fetchDataAndUpdate() {
+    context.read<CryptoCubit>().fetchData(); 
+    setState(() {
+      consultou = true; 
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
