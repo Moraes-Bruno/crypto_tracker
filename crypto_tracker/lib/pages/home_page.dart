@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     fetchDataAndUpdate();
     //Repository.getExchange(CoinEnum.USD, CoinEnum.BRL);
-    timer = Timer.periodic(const Duration(seconds: 30), (Timer t) {
+    timer = Timer.periodic(const Duration(seconds: 10), (Timer t) {
       fetchDataAndUpdate();
     });
   }
