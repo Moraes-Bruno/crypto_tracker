@@ -5,7 +5,7 @@
 
 ### João Victor Nascimento da Silva
 
-# Pacotes Utilizados:
+## Pacotes Utilizados:
 <a href="https://pub.dev/packages/flutter_bloc">flutter_bloc</a>
 <br>
 <a href="https://pub.dev/packages/provider">provider</a>
