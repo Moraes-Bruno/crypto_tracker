@@ -1,5 +1,7 @@
 # crypto_tracker
 
+### Obs: A api possui um limite de 100 requisições,em casos da aplicação não funcionar gerar uma nova chave aqui: <a Href="https://www.coinapi.io/">CoinApi</a>
+
 ## Grupo:
 ### Bruno de Moraes Xavier da Silva
 
